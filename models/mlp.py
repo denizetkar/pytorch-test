@@ -13,10 +13,10 @@ class MLP(nn.Module):
         for hidden_dim in net_arch[:-1]:
             layers.append(nn.Linear(input_dim, hidden_dim))
             layers.append(activation_fn())
+            input_dim = hidden_dim
 
         if len(net_arch) > 0:
             layers.append(nn.Linear(input_dim, net_arch[-1]))
-            input_dim = net_arch[-1]
 
         self.layers = nn.ModuleList(layers)
         self.is_classification = is_classification
